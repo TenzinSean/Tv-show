@@ -1,17 +1,25 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import showsContext from '../context/shows/showsContext';
+
+
+// Context
+import ShowContext from '../context/shows/showsContext';
+
 
 //Components
-import Alert from "../components/Alert";
+import Alert from "./Alert";
 
 const Searchbar = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const showsContext  = useContext(ShowContext);
 
+    const { searchShows } = showsContext;
 
     const onSearchHandler = (e) => {
         e.preventDefault();
 
-        console.log("Searching for term " + searchTerm);
+        searchShows(searchTerm);
     };
 
     return (

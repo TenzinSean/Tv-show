@@ -9,7 +9,7 @@ import HomePage from "./pages/Homepage";
 import AboutPage from "./pages/Aboutpage";
 import SinglePage from "./pages/Singlepage";
 
-
+import './index.css';
 
 const App = () => {
     return ( 
