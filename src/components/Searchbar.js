@@ -5,7 +5,7 @@ import showsContext from '../context/shows/showsContext';
 
 // Context
 import ShowContext from '../context/shows/showsContext';
-
+import alertContext from '../context/alerts/alertsContext';
 
 //Components
 import Alert from "./Alert";
@@ -16,15 +16,22 @@ const Searchbar = () => {
 
     const { searchShows } = showsContext;
 
+    const { alert, setAlert } = useContext(alertContext)
+
     const onSearchHandler = (e) => {
         e.preventDefault();
 
-        searchShows(searchTerm);
+
+        if(searchTerm === "") {
+            setAlert("Please enter something", "danger");
+        } else {
+            searchShows(searchTerm);
+        }
     };
 
     return (
         <div className="searchbar">
-            <Alert message="Please enter something" type="danger"/>
+            {alert ? <Alert message={alert.message} type={alert.type}/> : null}
             <form action="" className="searchbar__form">
                 <input type="text" placeholder="Search For Tv Show"
                 value={searchTerm}
